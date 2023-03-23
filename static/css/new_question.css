@@ -1,0 +1,142 @@
+.new_questionH1{
+    margin-top: 20px;
+}
+
+.new_question_container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 100vh;
+}
+.submit_delete{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 5.2%;
+}
+
+/* Style the form */
+.new_question_container form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 80%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+/* Style the image_input */
+.image_input{
+    display: flex;
+    margin-left: 5.2%;
+}
+.new_question_container p{
+    margin-left: 5.2%;
+    color: #ee190a;
+    display: none;
+}
+
+/* Style for the image input field */
+input[type="file"] {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+
+/* Style h3 */
+.new_question_container h3 {
+    font-size: 1.4rem;
+    margin-left: 5.2%;
+    margin-top: 1px;
+}
+
+/* Style labels */
+.new_question_container label {
+    font-size: 1rem;
+    margin-left: 5.2%;
+    margin-top: 1px;
+}
+/* Style answer with checkbox */
+.correct_checkbox{
+    display: flex;
+    margin-left: 5.2%;
+}
+
+/* Style the form inputs */
+.new_question_container input[type="text"] {
+    width: 90%;
+    margin-left: 5%;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+/* Style the form inputs */
+.new_question_container input[type="checkbox"] {
+    padding: 12px 20px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style the form textarea */
+.new_question_container textarea {
+    width: 90%;
+    margin-left: 5%;
+    padding: 0;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style the select tag */
+.new_question_container select {
+    width: 90%;
+    margin-left: 5%;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+/* Style the login button */
+.new_question_container button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    width: 20%;
+    padding: 14px 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Style the cancel button */
+.cancel_btn{
+    background-color: #f44336;
+    color: white;
+    width: 15%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lucida Grande';
+    font-style: normal;
+    text-decoration: none;
+    font-size: small;
+    text-align: center;
+}
+/* Add a hover effect for buttons */
+.new_question_container button:hover {
+    opacity: 0.8;
+}
+

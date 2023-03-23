@@ -1,0 +1,134 @@
+{% extends 'base_for_game.html' %}
+{% block title %}Owli | Quiz {{code}}, Question {{question_index}} {% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="{{ category }}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<script>
+    window.addEventListener('popstate', function(e) {
+      // Display a warning message
+      if (confirm("Are you sure you want to leave this page?")) {
+        // If the user confirms, redirect to a different page
+        window.location.href = "/";
+      } else {
+        // If the user cancels, push a new state to the history
+        history.pushState(null, null, window.location.pathname);
+      }
+    });
+  </script>
+  <!--get variables for JS -->
+  <script type = "text/javascript"> 
+    const session = `{{session}}`
+    const username = `{{username}}`
+    const quizlen = `{{quizlen}}`
+    const duration = `{{duration}}`
+    const question_index = `{{question_index}}`
+  </script>
+{% if user.registered ==True %}
+<script>
+  let correct_choices = `{{correct_choices}}`
+</script>
+<div class="ask-container">
+    <div>
+        <a class ="exit-btn" href="{{url_for('main.index')}}" onclick="return confirm('Are you sure you want to leave?');">Exit</a>
+    </div>
+    <div class="question">
+        <h1>{{ question }} </h1>
+    </div>
+    <button type="submit" class="next-btn" id ="ready_button">Ready</button>
+    <!-- if quizlen = question index there will not be timer before redirect -->
+    <button type="submit" class="next-btn" name="show_score" id ="show_score">Next</button>
+    {% if question_index|int < quizlen|int-1 %}
+  <button type="submit" class="next-btn" name="next_question" id ="next_question">Next</button>
+  {%else%}
+  <button type="submit" class="next-btn" name="results" id ="next_question">Next</button>
+  {%endif%}
+</div>
+
+<div class ='question_picture_container' id="question_picture_container">
+    {% if question_image %}
+    <img class="question_image" src="{{ url_for('static', filename='users_pictures/' + question_image) }}" alt="question image">
+    {% endif %}
+</div>
+
+<div class="chart-container" id="chart-container">
+  <div class="chart">
+  {%for choice in choices %}
+  {% set answer_button = loop.index %}
+  <div class="bar-{{ answer_button }}" id="bar-{{ answer_button }}"><span id ="span-{{ answer_button }}" ></span><label id ="label-{{ answer_button }}"><img id ="cross_mark{{ answer_button }}"src="{{url_for('static', filename='images/icons8-cross-mark-96.png')}}" alt="cross mark"><img id ="check_mark{{ answer_button }}"src="{{url_for('static', filename='images/icons8-check-mark-96.png')}}" alt="check mark"></label></div>
+  {% endfor %}
+  </div>
+</div>
+<div class="question-container" id ="question-container">
+    {% for choice in choices %}
+  {% set answer_button = loop.index %}
+  <span class="answer-btn answer{{ answer_button }}">{{ choice }}</span>
+    {% endfor %}
+</div>
+<div class="hidden">
+  <form action="{{ url_for('main.submit_question', session=session, question_index=question_index) }}" method="post">
+    <div class="question_submit_container_student">
+    <div class="question-container">
+        {% for choice in choices %}
+      {% set answer_button = loop.index %}
+        <button class="answer-btn answer{{ answer_button }}" id="answer{{ answer_button }}" type="radio" name="choice" value="{{choice}}" {% if choice_selected %}disabled{% endif %}>{{ choice }}</button>
+        {% endfor %}
+    </div>
+  </div>
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+</form>
+</div>
+
+
+<div id="timer"></div>
+
+<div id="question_timer"> </div>
+
+<div class="inherit_score" id ='inherit_score'>
+    <div class="bubbles" id ="bubbles">
+    </div>
+</div>
+<p><span id="click_counter">0</span></p>
+{% else %}
+<div class="exit_btn_container">
+  <div>
+      <a class ="exit-btn" href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to leave?');">Exit</a>
+  </div>
+</div>
+<form action="{{ url_for('main.submit_question', session=session, question_index=question_index) }}" method="post">
+    <div class="question_submit_container_student">
+    <div class="question-container">
+        {% for choice in choices %}
+      {% set answer_button = loop.index %}
+        <button class="answer-btn answer{{ answer_button }}" id="answer{{ answer_button }}" type="radio" name="choice" value="{{choice}}" {% if choice_selected %}disabled{% endif %}>{{choice}}</button>
+        {% endfor %}
+    </div>
+  </div>
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+</form>
+<div class="hidden">
+  <div class="inherit_score" id ='inherit_score'>
+    <div class="bubbles" id ="bubbles">
+    </div>
+</div>
+  <div id="timer"></div>
+
+<div id="question_timer"> </div>
+    <button type="submit" class="next-btn" id ="ready_button">Ready</button>
+    <button type="submit" class="next-btn" name="show_score" id ="show_score">Next</button>
+  <button type="submit" class="next-btn" name="next_question" id ="next_question">Next Question</button>
+</div>
+{% endif %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='scripts/next_question_socketio.js') }}"></script>
+{%endblock%}

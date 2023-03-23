@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}Owli | Quiz {{ quiz.id }} details{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="quiz_details_container">
+    <div class="generate_code">
+        <h1>{{ quiz.title }}</h1>
+        <a href="{{ url_for('main.start_quiz', quiz_id=quiz.id) }}" class="startQuiz_Btn">Start Quiz</a>
+    </div>
+    <div class="quiz-info-table">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{ quiz.description }}</td>
+                </tr>
+                <tr>
+                    <td>Created:</td>
+                    <td>{{ quiz.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+                <tr>
+                    <td>Last Modified:</td>
+                    <td>{{ quiz.modified_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+                <tr>
+                    <td>Time for one question:</td>
+                    <td>{{ quiz.duration }} seconds</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{{url_for('crud.editQuiz', quiz_id=quiz.id)}}" class="edit_quiz_button">Edit Quiz</a>
+    </div>
+
+    <hr>
+
+    <div class="add_question_container">
+        <h3>Questions:</h3>
+        <a href="/newQuestion/{{quiz.id}}" class="add_question_button">Add Question</a>
+    </div>
+
+    {% for question in quiz.questions %}
+    <div class="quiz_edit_question">
+        <form method="POST" action="{{ url_for('crud.edit_question', quiz_id=quiz.id, question_id=question.id) }}" enctype="multipart/form-data" class="mb-4">
+            <div class="question_edit_Quiz">
+                {{ form.hidden_tag() }}
+                <h5>Question:</h5>
+                {{ form.question(class_="form-control", placeholder="Type your question here", value=question.text) }}
+<!-- 
+                {% if question.image_url %}
+                <img class="question_image" src="{{ url_for('static', filename='users_pictures/' + question.image_url) }}" alt="question image">
+                {% endif %} -->
+                <div class="image_input">
+                  <input type="file" name="image" id="fileInput_{{ loop.index }}" onchange="updateFileName('fileInput_{{ loop.index }}', 'fileNameLabel_{{ loop.index }}','deleteBtn{{ loop.index }}')" class="hidden">
+                  <script>
+                      function updateFileName(inputId, labelId, btnId) {
+                          let image_url = "{{ question.image_url }}";
+                          let fileName = document.getElementById(inputId).value.split("\\").pop();
+                          document.getElementById(labelId).innerHTML = '<span class="pseudoButton">Choose file</span> ' + (fileName || image_url || 'No file chosen');
+                          if (fileName || image_url) {
+                              document.getElementById(btnId).style.display = 'inline-block';
+                          } else {
+                              document.getElementById(btnId).style.display = 'none';
+                          }
+                      }
+                    
+                      function deleteImage(labelId, inputId, btnId) {
+                          document.getElementById(labelId).innerHTML = '<span class="pseudoButton">Choose file</span> No file chosen';
+                          document.getElementById(inputId).value = '';
+                          document.getElementById(btnId).style.display = "none";
+                          document.getElementById('deleteMessage_' + inputId.split('_')[1]).style.display = 'block'; // display the message
+                      }
+                  </script>
+                  <label for="fileInput_{{ loop.index }}" id="fileNameLabel_{{ loop.index }}"><span class="pseudoButton">Choose file</span> {{ question.image_url or 'No file chosen' }}</label>
+                      <button for="fileInput_{{ loop.index }}" id="deleteBtn{{ loop.index }}" type="button" class="delete_image_button" onclick="deleteImage('fileNameLabel_{{ loop.index }}', 'fileInput_{{ loop.index }}', 'deleteBtn{{ loop.index }}')">Delete</button>
+              </div>
+              <p id="deleteMessage_{{ loop.index }}" >Note: The picture is not actually deleted. To delete, press "Save changes".</p>
+                 
+        <div>
+          <h5>Answers:</h5>
+          <div>
+            {{ form.answer1(class_="form-control", value = question.choices[0].text)}}
+            {{ form.correct_answer.label(class_="form-check-label ml-2") }}
+            {% if question.choices[0].is_correct ==True %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="1", checked="checked") }}
+            {% else %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="1") }}
+            {% endif %}
+          </div>
+          <div>
+            {{ form.answer2(class_="form-control", value = question.choices[1].text) }}
+            {{ form.correct_answer.label(class_="form-check-label ml-2") }}
+            {% if question.choices[1].is_correct ==True %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="2", checked="checked") }}
+            {% else %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="2") }}
+            {% endif %}
+          </div>
+          <div>
+            {{ form.answer3(class_="form-control", value = question.choices[2].text) }}
+            {{ form.correct_answer.label(class_="form-check-label ml-2") }}
+            {% if question.choices[2].is_correct ==True %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="3", checked="checked") }}
+            {% else %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="3") }}
+            {% endif %}
+          </div>
+          <div>
+            {{ form.answer4(class_="form-control", value = question.choices[3].text) }}
+            {{ form.correct_answer.label(class_="form-check-label ml-2") }}
+            {% if question.choices[3].is_correct ==True %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="4", checked="checked") }}
+            {% else %}
+            {{ form.correct_answer(class_="form-check-input ml-2", value="4") }}
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="save_changes_btn">Save changes</button>
+          <a href="{{ url_for('crud.delete_question', quiz_id=quiz.id, question_id=question.id) }}" class="delete_question_btn" onclick="return confirm('Are you sure you want to delete this Quiz?');">Delete question</a> 
+        </div>
+      </div>
+      </form>
+      {% if loop.last %}
+    </div>
+    <div class="last_div">
+  <a href="/newQuestion/{{quiz.id}}" class="add_question_button">Add Question</a>
+</div>
+{% endif %}
+      {% endfor %}
+</div>
+    {%endblock%}

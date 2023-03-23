@@ -1,0 +1,71 @@
+.login_container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login_container h1, h2{
+    margin-bottom: 30px;
+}
+
+/* Style the form */
+.login_container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Style the form inputs */
+.login_container input[type="text"],
+.login_container input[type="password"],
+.login_container input[type="email"]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+
+/* Style the login button */
+.login_container button[type="submit"] {
+
+    background-color: #4caf50;
+    color: white;
+    width: 90%;
+    padding: 14px 20px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Style the cancel button */
+.Cancel_btn {
+    background-color: #f44336;
+    color: white;
+    width: 80%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lucida Grande';
+    font-style: normal;
+    text-decoration: none;
+    font-size: small;
+    text-align: center;
+}
+
+/* Add a hover effect for buttons */
+.login_container button:hover {
+    opacity: 0.8;
+}

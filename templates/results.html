@@ -1,0 +1,62 @@
+{% extends 'base_for_game.html' %}
+{% block title %}Owli | Results{% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="{{ category }}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% if user.registered ==True %}
+<div class="exit_btn_container">
+    <div>
+        <a class ="exit-btn" href="{{url_for('main.index')}}">Exit</a>
+    </div>
+</div>
+<div class="results-container">
+    <h1>Results</h1>
+    <div class = 'winner-podium'>
+        {% if user_scores_list|length > 0 %}
+        <span class="user first">{{ user_scores_list[0][0] }}</span>
+        {% if user_scores_list|length > 1 %}
+            <span class="user second">{{ user_scores_list[1][0] }}</span>
+        {% endif %}
+        {% if user_scores_list|length > 2 %}
+            <span class="user third">{{ user_scores_list[2][0] }}</span>
+        {% endif %}
+    {% endif %}
+    
+    <img src="{{url_for('static', filename='images/winner-podium-7832.svg')}}" alt ="winners podium">
+    </div>
+    </div>
+    {% else %}
+<div class="exit_btn_container">
+    <div>
+        <a class ="exit-btn" href="{{ url_for('auth.logout') }}">Exit</a>
+    </div>
+  </div>
+  {% endif %}
+    <div class ="table-quizes">
+        <table>
+            <thead>
+            <tr>
+                <th>Place</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+                {%for name, score in user_scores.items()%}
+                {% set place = loop.index %}
+                <tr>
+                  <td>{{place}}</td>
+                  <td>{{name}}</td>
+                  <td>{{score}}</td>
+                </tr>
+                {%endfor%}
+              </tbody>
+        </table>
+    </div>
+
+    {% endblock %}

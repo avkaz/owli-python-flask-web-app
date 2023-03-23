@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Owli | Fast New Quiz{% endblock %}
+
+{% block content %}
+
+<h1 class="new_quizH1"> New Quiz</h1>
+<div class =flashDiv>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+<div class="new_quiz_container">
+
+    <form  method="POST" action="{{ url_for('crud.newQuiz') }}">
+    <h3 for="title">Quiz Title:</h3>
+    {{ form.hidden_tag() }}
+    {{form.quizTitle}}
+
+    <h3 for="description">Quiz Description:</h3>
+    {{form.quizDescription}}
+
+    <h3 for="question-time-limit">Question Time Limit:</h3>
+    {{ form.quizDuration }}
+    
+
+    <div class="submit_delete">
+        <div class="submit_new">
+            <button type="submit">Submit</button>
+
+            <a href="{{ url_for('crud.fastNewQuestion') }}" class="add_question">Add Questions</a>
+ 
+        </div>
+        <a href="{{ url_for('crud.quizzes') }}" class="cancel_btn">Cancel</a>
+
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+.new_quiz_container{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 100vh;
+}
+.new_quizH1{
+    margin-top: 40px;
+}
+.new_quiz_container .submit_delete{
+    display: flex;
+    width: 100%;
+    margin-left: 5.2%;
+    flex-direction: column;
+}
+
+/* Style the form */
+.new_quiz_container form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 80%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* Style labels */
+.new_quiz_container h3{
+    font-size: 1.3rem;
+    margin-left: 5.2%;
+    margin-top: 5px;
+}
+
+/* Style the form inputs */
+.new_quiz_container input[type="text"]{
+    width: 90%;
+    margin-left: 5%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+/* Style the form textarea */
+.new_quiz_container textarea{
+    width: 90%;
+    margin-left: 5%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+/* Style the select tag */
+.new_quiz_container select{
+    width: 90%;
+    margin-left: 5%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+
+/* Style the submit button */
+.submit_delete button[type="submit"] {
+
+    background-color: #4caf50;
+    color: white;
+    width: 20%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+.submit_new{
+    display: flex;
+    justify-content: start;
+}
+
+.add_question {
+    background-color: orange;
+    color: white;
+    width: 20%;
+    padding: 14px 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lucida Grande';
+    font-style: normal;
+    text-decoration: none;
+    font-size: small;
+    text-align: center;
+}
+
+/* Style the cancel button */
+.cancel_btn{
+    background-color: #f44336;
+    color: white;
+    width: 15%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lucida Grande';
+    font-style: normal;
+    text-decoration: none;
+    font-size: small;
+    text-align: center;
+}
+
+/* Add a hover effect for buttons */
+.new_quiz_container button:hover {
+    opacity: 0.8;
+}

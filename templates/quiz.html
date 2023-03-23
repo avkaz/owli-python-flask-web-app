@@ -1,0 +1,122 @@
+{% extends 'base_for_game.html' %}
+{% block title %}Owli | Quiz {{code}}{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="{{ category }}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<!-- Script if user would live the page -->
+<script>
+    window.addEventListener('popstate', function(e) {
+      // Display a warning message
+      if (confirm("Are you sure you want to leave this page?")) {
+        // If the user confirms, redirect to a different page
+        window.location.href = "/";
+      } else {
+        // If the user cancels, push a new state to the history
+        history.pushState(null, null, window.location.pathname);
+      }
+    });
+  </script>
+        <!--get username-->
+          <script type = "text/javascript"> 
+            const username = `{{username}}`
+          </script>
+
+ <!-- get session code-->
+ <script type = "text/javascript"> 
+    const session = `{{code}}`
+  </script>
+
+{%if user.registered ==True %}
+  <div class="exit_btn_container">
+    <div>
+        <a class ="exit-btn" href="{{url_for('main.index')}}" onclick="return confirm('Are you sure you want to leave?');">Exit</a>
+    </div>
+</div>
+ 
+<div class="quiz-container">
+    <!-- Section to display all users -->
+    <div class = "users_connected">
+        <h2>Connected players</h2>
+        <div class="users">
+        </div>
+    </div>
+     <!-- Section to display quiz info -->
+    <div class = quiz_info>
+        <h1>{{ quiz.title }}</h1>
+        <div class="quiz-code">{{ code }}</div>
+        <p>Enter this code at <br><strong>owli.cz</strong> <br>to start the quiz.</p>
+        <img src="data:image/png;base64,{{ qr_code }}"  alt="qr code" class="qr_code" id="qr_code"/>
+        <button type="submit" id ="start_quiz_Button">Start Quiz</button>
+    </div>
+    <div id="timer"></div>
+    <div class ="chat-container">
+        <div class="header">
+            <h2>Owli chat</h2>
+        </div>
+        <div class="messages">
+            <div class="message received">
+                <span class="sender">Owli</span>
+                <p>Hello there!</p>
+            </div>
+        </div>
+        <div class="input">
+            <form>
+                <input type="text" placeholder="Type your message here..." id="messageInput">
+                <button type="button" id="sendButton">Send</button>
+            </form>
+        </div>
+        </div>
+</div>
+    {%else%}
+    <div class="exit_btn_container">
+        <div>
+            <a class ="exit-btn" href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to leave?');">Exit</a>
+        </div>
+      </div>
+    <div class =hidden>
+            <!-- Section to display all users -->
+    <div class = "users_connected">
+        <h2>Connected players</h2>
+        <div class="users">
+            <span class="user">John</span>
+            <span class="user">Jane</span>
+            <span class="user">Bob</span>
+        </div>
+    </div>
+    <div id="timer"></div>
+    <button type="submit" id ="start_quiz_Button" class="start_quiz_Btn">Start Quiz</button>
+    </div>
+
+    <div class ="chat-container_stud">
+    <div class="header">
+        <h2>Owli chat</h2>
+    </div>
+    <div class="messages">
+        <div class="message received">
+            <span class="sender">John Doe</span>
+            <p>Hello there!</p>
+        </div>
+    </div>
+    <div class="input">
+        <form>
+            <input type="text" placeholder="Type your message here..." id="messageInput">
+            <button type="button" id="sendButton">Send</button>
+        </form>
+    </div>
+    </div>
+</div>
+    {% endif %}
+
+
+<!-- Connecting to SocketIO and to script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='scripts/start_quiz_socketio.js') }}"></script>
+{% endblock %}

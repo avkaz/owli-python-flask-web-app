@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Owli | Edit Quiz{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="{{ category }}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<h1 class="new_quizH1"> New Quiz</h1>
+<div class =flashDiv>
+
+    </div>
+<div class="new_quiz_container">
+
+    <form method="POST" action="{{ url_for('crud.editQuiz', quiz_id =quiz.id) }}">
+    <h3 for="title">Quiz Title:</h3>
+    {{ form.hidden_tag() }}
+    {{form.quizTitle}}
+
+    <h3 for="description">Quiz Description:</h3>
+    {{form.quizDescription}}
+
+    <h3 for="question-time-limit">Question Time Limit:</h3>
+    {{ form.quizDuration }}
+
+    <div class="submit_delete">
+        <div class="submit_new">
+            <button type="submit">Submit</button>
+            {% if form.quizTitle.data %}
+            <a href="{{ url_for('crud.newQuestion', quiz_id=quiz.id) }}" class="add_question">Add Questions</a>
+          {% endif %}
+        </div>
+        <a href="/quiz/{{quiz.id}}/details" class="cancel_btn">Cancel</a>
+
+    </div>
+</form>
+</div>
+{% endblock %}

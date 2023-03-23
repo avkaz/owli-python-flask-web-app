@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<h1>Admin Page</h1>
+<div class="report_container">
+  <ul class="round">
+    <li><br>Total users: <br>{{ total_users }}</li>
+    <li><br>Total players: <br>{{ total_players }}</li>
+    <li><br>Total sessions:<br> {{ total_sessions }}</li>
+    <li><br>Total quizzes: <br>{{ total_quizzes }}</li>
+  </ul>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Nickname</th>
+      <th>Email</th>
+      <th>Is Registered?</th>
+      <th>Is Admin?</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.nickname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ 'Yes' if user.registered else 'No' }}</td>
+        <td>{{ 'Yes' if user.admin else 'No' }}</td>
+        <td>
+          {% if user.admin %}
+          <a href="{{ url_for('adm.delete_user', user_id=user.id) }}" class="deleteUser" disabled>Delete</a>
+          {% if user.email =="av.kazakov55@gmail.com"%}
+          <a href="{{ url_for('adm.set_admin', user_id=user.id, admin=0) }}" class="removeAdmin" disabled>Remove Admin</a>
+          {%else%}
+          <a href="{{ url_for('adm.set_admin', user_id=user.id, admin=0) }}" class="removeAdmin">Remove Admin</a>
+          {%endif%}
+          
+         
+      {% else %}
+          <a href="{{ url_for('adm.delete_user', user_id=user.id) }}" class="deleteUser">Delete</a>
+          <a href="{{ url_for('adm.set_admin', user_id=user.id, admin=1) }}" class="makeAdmin">Make Admin</a>
+      {% endif %}
+      
+      
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!-- {% if pagination.pages and pagination.pages|length > 1 %}
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      {% if pagination.page > 1 %}
+        <li class="pagination-item">
+          <a href="{{ url_for(request.endpoint, page=pagination.page-1) }}" class="pagination-link">&laquo; Previous</a>
+        </li>
+      {% endif %}
+      {% for page_num in pagination.pages %}
+        <li class="pagination-item{% if page_num == pagination.page %} active{% endif %}">
+          <a href="{{ url_for(request.endpoint, page=page_num) }}" class="pagination-link">{{ page_num }}</a>
+        </li>
+      {% endfor %}
+      {% if pagination.page < pagination.pages|length %}
+        <li class="pagination-item">
+          <a href="{{ url_for(request.endpoint, page=pagination.page+1) }}" class="pagination-link">Next &raquo;</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %} -->
+
+{% endblock %}

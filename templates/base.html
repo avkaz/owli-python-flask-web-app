@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo/owli-website-favicon-color.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/quiz.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/question.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/next.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new_quiz.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new_question.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/quiz_details.css') }}">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    
+
+</head>
+<body>
+<header>
+    <a class ="nav_logo"href="{{url_for('main.index')}}">
+        <img src="{{url_for('static', filename='images/logo/svg/owli-high-resolution-logo-white-on-transparent-background.svg')}}" alt="Logo">
+      </a>
+      
+    <ul>
+        {% if current_user.is_authenticated and current_user.registered %}
+        <li><a href="{{ url_for('crud.fastNewQuestion') }}">Fast New Question</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.registered %}
+        <li><a href="{{ url_for('crud.newQuiz') }}">Fast New Quiz</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.registered %}
+        <li><a href="{{ url_for('crud.quizzes') }}">My Quizzes</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.admin %}
+        <li><a href="{{ url_for('adm.admin') }}">Admin</a></li>
+        {% endif %}
+    </ul>
+    <div class='auth'>
+        {% if not current_user.is_authenticated %}
+         <a class ="login_button" href="{{ url_for('auth.login') }}"> Log In</a>
+         <a class ="login_button" href="{{ url_for('auth.signup') }}"> Sign Up</a>
+         {% endif %}
+         {% if current_user.is_authenticated %}
+         <a class ="login_button" href="{{ url_for('auth.logout') }}">Log Out</a>
+         {% endif %}
+    </div>
+    <select onchange="window.location.href=this.value;">
+        <option value="" selected="selected">Menu &#9776;</option>
+        <option value="{{url_for('main.index')}}">Home</option>
+        {% if current_user.is_authenticated and current_user.registered %}
+        <option value="{{ url_for('crud.fastNewQuestion') }}">Fast New Question</option>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.registered %}
+        <option value="{{ url_for('crud.newQuiz') }}">Fast New Quiz</option>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.registered %}
+        <option value="{{ url_for('crud.quizzes') }}">My Quizzes</option>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.admin %}
+        <option value="{{ url_for('adm.admin') }}">Admin</option>
+        {% endif %}
+        {% if not current_user.is_authenticated %}
+        <option value="{{ url_for('auth.login') }}">Log In</option>
+        <option value="{{ url_for('auth.signup') }}">Sign Up</option>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <option value="{{ url_for('auth.logout') }}">Log Out</option>
+        {% endif %}
+    </select>
+</header>
+
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

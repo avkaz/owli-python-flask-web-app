@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Owli{% endblock %}
+
+{% block content %}
+<div class="owli_container">
+    <div class =flashDiv>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <img src="static/images/logo/owli-high-resolution-color-logo.jpeg" alt="big logo picture">
+    <div class="owli_input">
+        <form method="POST" action="{{ url_for('main.index') }}">
+            {{ form.hidden_tag() }}
+            {{form.quiz_code }}
+        <button>Enter</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Owli | NickName input{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="{{ category }}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="login_container">
+    <form class="form-signin" method="POST" action="{{ url_for('main.studentLogin', session=session) }}">
+        <h2>Please Enter you Nickname</h1>
+        {{ form.hidden_tag() }}
+        {{ form.nickname }}
+        <button type="submit">Ready</button>
+        <a href="{{ url_for('main.index') }}" class="Cancel_btn">Cancel</a>
+
+    </form>
+    </div>
+{% endblock %}

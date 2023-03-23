@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Owli | New Question{% endblock %}
+
+{% block content %}
+
+<h1 class="new_questionH1">Add New Question</h1>
+<div class =flashDiv>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+    </div>
+<div class="new_question_container">
+  <form method="POST" action="{{ url_for('crud.newQuestion', quiz_id = quiz_id) }}">
+    {{ form.hidden_tag() }}
+    <h3>Quiz:</h3>
+    {{ form.quiz(class_="select", placeholder="Select a Quiz" )}}
+    <h3>Question:</h3>
+    {{ form.question(class_="form-control", placeholder="Type your question here") }}
+    <div class="image_input">
+      <input type="file" name="image" id="fileInput_" onchange="updateFileName('fileInput_', 'fileNameLabel_', 'deleteBtn')" class="hidden">
+      <script>
+          function updateFileName(inputId, labelId, btnId) {
+              let fileName = document.getElementById(inputId).value.split("\\").pop();
+              document.getElementById(labelId).innerHTML = '<span class="pseudoButton">Choose file</span> ' + (fileName || image_url || 'No file chosen');
+              if (fileName) {
+                  document.getElementById(btnId).style.display = 'inline-block';
+              } else {
+                  document.getElementById(btnId).style.display = 'none';
+              }
+          }
+  
+          function deleteImage(labelId, inputId, btnId) {
+              document.getElementById(labelId).innerHTML = '<span class="pseudoButton">Choose file</span> No file chosen';
+              document.getElementById(inputId).value = '';
+              document.getElementById(btnId).style.display = "none";
+
+          }
+      </script>
+      <label for="fileInput_" id="fileNameLabel_"><span class="pseudoButton">Choose file</span> No file chosen</label>
+      <button for="fileInput_" id="deleteBtn" type="button" class="delete_image_button" onclick="deleteImage('fileNameLabel_', 'fileInput_', 'deleteBtn')">Delete</button>
+  </div>
+  
+    <h3>Choices:</h3>
+
+        {{ form.answer1}}
+        <div class="correct_checkbox">
+          {{ form.correct_answer(class_="form-check-input mt-0", value="1", checked="checked") }}
+        {{ form.correct_answer.label }}
+      </div>
+        {{ form.answer2(class_="form-control") }}
+        <div class="correct_checkbox">
+          {{ form.correct_answer(class_="form-check-input mb-0", value="2") }}
+        {{ form.correct_answer.label }}
+      </div>
+        {{ form.answer3(class_="form-control") }}
+        <div class="correct_checkbox">
+          {{ form.correct_answer(class_="form-check-input mt-0", value="3") }}
+        {{ form.correct_answer.label }}
+      </div>
+        {{ form.answer4(class_="form-control") }}
+        <div class="correct_checkbox">
+          {{ form.correct_answer(class_="form-check-input mt-0", value="4") }}
+        {{ form.correct_answer.label }}
+      </div>
+
+    <div class="submit_delete">
+        <button type="submit">Submit</button>
+        <a href="{{ url_for('crud.quiz_details', quiz_id=quiz_id) }}" class="cancel_btn">Back</a>
+    </div>
+</form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,187 @@
+/* Set box-sizing to border-box for easier sizing */
+* {
+    box-sizing: border-box;
+}
+.exit_btn_container{
+    margin-top: 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 40px;
+}
+.exit_btn_container .exit-btn{
+    height: 40px;
+}
+
+/* Style the container */
+.quiz-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.quiz-container h1, .quiz-container h2{
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style quiz info block */
+.quiz_info{
+    width: 25%;
+    min-width: 300px;
+    margin-bottom: 20px;
+}
+
+.quiz_info p {
+    font-size: 22px;
+    margin-top: 20px;
+    text-align: center;
+}
+.quiz_info p strong{
+    font-size: 25px;
+    color: #010C80;
+}
+.quiz-code {
+    margin-top: 20px;
+    margin-left: 10%;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80%;
+}
+.qr_code{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+
+/* Style the chat block */
+.chat-container{
+    width: 25%;
+    min-width: 300px;
+}
+.chat-container_stud{
+    width: 25%;
+    min-width: 300px;
+    margin: auto;
+}
+
+.chat-container_stud .messages{
+    height: 450px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style the chatbox */
+.messages {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+/* Style the messages */
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+.sender{
+    color: #109cf5;
+}
+
+.message p {
+    margin: 0;
+}
+
+.received {
+    background-color: #f1f0f0;
+    border-radius: 10px 10px 0 10px;
+}
+
+.sent {
+    background-color: #e2f7ea;
+    border-radius: 10px 10px 10px 0;
+    align-self: flex-end;
+}
+
+
+/* Style the input */
+.input form {
+    display: flex;
+}
+
+.input input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.input button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.input button:hover {
+    background-color: #3e8e41;
+}
+
+/* Style for the "Connected players" block */
+.users_connected {
+    width: 30%;
+    min-width: 300px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    height: 600px;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.user {
+    background-color: #010C80;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+/* Style the start quiz button */
+.quiz-container button[type="submit"] {
+
+    background-color: #03a409;
+    color: white;
+    width: 90%;
+    padding: 14px 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 5%;
+}
+
+

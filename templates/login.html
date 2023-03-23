@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Owli | LogIn{% endblock %}
+
+{% block content %}
+<div class =flashDiv>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<div class="login_container">
+    <form class="form-signin" method="POST" action="/login">
+        <h1>Login</h1>
+        {{ form.hidden_tag() }}
+        <label for="username">Username or email:</label>
+        {{ form.username }}
+        <label for="password">Password:</label>
+        {{ form.password }}
+        <button type="submit">Login</button>
+        <a href="{{ url_for('main.index') }}" class="Cancel_btn">Cancel</a>
+
+    </form>
+    </div>
+{% endblock %}

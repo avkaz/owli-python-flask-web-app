@@ -1,0 +1,499 @@
+
+/* Use the font */
+body {
+    font-family: 'Chewy', cursive;
+}
+a{
+    text-decoration: none;
+}
+
+*{ margin: 0; }
+/* Style for the navigation bar */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+/* Style for the logo */
+header img {
+width: 100%;
+}
+
+.nav_logo{
+    margin-left: 2%;
+    width: 5%;
+}
+
+/* Style for the links */
+header ul {
+    display: flex;
+    margin-left: 5%;
+    padding: 0;
+    list-style: none;
+}
+
+/* Style for the link items */
+header ul li {
+    margin-right: 40px;
+}
+.auth{
+    margin-right: 2%;
+}
+/* Style for the login button */
+header .login_button {
+    background-color: #00FFEF;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    font-family: 'Chewy', cursive;
+    text-decoration: none;
+    font-size: small;
+    text-align: center;
+}
+
+header ul li a {
+    color: #1EBBD7;
+    text-decoration: none;
+}
+/* drop down menu on small screens */
+header select {
+  display: none;
+}
+
+    /* Add styles for when the select element is focused */
+    header select:focus {
+        outline: none;
+        /* Change the border and box shadow to indicate focus */
+        border-color: #66afe9;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(102, 175, 233, 0.6);
+    }
+
+    /* Style the option elements */
+    header select option {
+        /* Add a custom font and font-size */
+        font-family: 'Chewy', cursive;
+        font-size: 14px;
+        /* Add a background color and padding */
+        background-color: #fff;
+        padding: 8px;
+    }
+
+
+
+body{
+    background-color: #1EBBD7;
+ }
+
+.owli_container img{
+    width: 20%;
+    min-width: 300px;
+    margin:auto;
+}
+.owli_container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.owli_input {
+    width: 20%;
+    min-width: 300px;
+    height: 110px;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #010C80;
+    margin:auto;
+}
+
+.owli_input input {
+    font-family: 'Chewy', cursive;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    height: 40px;
+    margin-left:5%;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.owli_input button {
+    background-color: #010C80;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 5%;
+    width: 90%;
+    height: 40px;
+}
+
+/* tables */
+.my-quizzes-header{
+    display: flex;
+    align-content: start;
+}
+
+.table-quizes{
+    width:80%;
+    margin: 0 auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: rgba(1, 12, 128, 0.8);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+table a{
+    color: #fff;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #1EBBD7;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+
+}
+
+
+tr:nth-child(even) {
+    background-color: #1EBBD7;
+    color: black;
+}
+tr:nth-child(even) a{
+    background-color: #1EBBD7;
+    color: black;
+}
+
+/* results page */
+.results-container{
+    margin-top: 30px;
+}
+.winner-podium {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 500px;
+    width: 550px;
+    padding-bottom: 0;
+    margin: 0 auto;
+}
+
+.winner-podium .user {
+    position: absolute;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+}
+
+.first {
+    bottom: 85%;
+    left: 35%;
+    width: 30%;
+    white-space: normal; /* Allows text to wrap to multiple lines */
+    word-wrap: break-word; /* Breaks words that are too long to fit on a line */
+}
+
+.second {
+    bottom: 73%;
+    left: 0%;
+    width: 30%;
+    white-space: normal; /* Allows text to wrap to multiple lines */
+    word-wrap: break-word; /* Breaks words that are too long to fit on a line */
+
+}
+
+.third {
+    bottom: 60.5%;
+    right: 0%;
+    width: 30%;
+    white-space: normal; /* Allows text to wrap to multiple lines */
+  word-wrap: break-word; /* Breaks words that are too long to fit on a line */
+}
+
+
+.winner-podium img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Style for success messages */
+.success {
+    background-color: #4CAF50;
+    width: 70%;
+    margin:  auto;
+    border-radius: 15px;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Style for error messages */
+  .error {
+    background-color: #f44336;
+    width: 70%;
+    margin:  auto;
+    border-radius: 15px;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+/* Clears all flash messages before displaying new one*/
+  .clear-flash-messages {
+    display: none;
+}
+
+
+  /* Style symbols on quizzes page */
+.delete-symbol {
+    color: red;
+    font-size: 1.5rem;
+    }
+
+.edit-symbol {
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 960px) {
+    header ul {
+        display: none;
+    }
+
+    header div {
+        display: none;
+    }
+
+    header select {
+        display: inline-block;
+    }
+
+    /* Hide the default dropdown arrow */
+    header select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        /* Add a background color and padding */
+        background-color: #00FFEF;
+        padding: 8px;
+        /* Add a border and border-radius */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        /* Add a box shadow to create a 3D effect */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Add a custom font and font-size */
+        font-family: 'Chewy', cursive;
+        font-size: 14px;
+    }
+
+}
+
+.hidden{
+    display: none;
+}
+
+/* style for admin page  */
+
+
+.report_container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .round {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .round li {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .round li:first-child {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .round li:nth-child(2) {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .round li:nth-child(3) {
+    background-color: #2ecc71;
+    color: #fff;
+  }
+  
+  .round li:last-child {
+    background-color: #f39c12;
+    color: #fff;
+  }
+  
+  .label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .pagination-item {
+    margin: 0 0.25rem;
+  }
+  
+  .pagination-link {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    display: block;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .pagination-link:hover:not([disabled]) {
+    background-color: #f5f5f5;
+  }
+  
+  .pagination-link.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination-link[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+
+  /* buttons for admin page */
+  .makeAdmin, .deleteUser, .removeAdmin {
+    background-color: rgb(251, 180, 47);
+    color: white;
+    width: 20%;
+    padding: 8px 20px;
+    margin-left: 0.2px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lucida Grande';
+    font-style: normal;
+    text-decoration: none;
+    font-size: small;
+    text-align: center;
+}
+
+.deleteUser{
+    background-color: red;
+}
+.removeAdmin{
+    background-color: orangered;
+}
+
+.deleteUser[disabled], .makeAdmin[disabled], .removeAdmin[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+tr:nth-child(even) .makeAdmin, tr:nth-child(even) .deleteUser {
+    background-color: rgb(251, 180, 47);
+    color: white;
+    width: 20%;
+    padding: 8px 20px;
+    margin-left: 0.2px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lucida Grande';
+    font-style: normal;
+    text-decoration: none;
+    font-size: small;
+}
+
+tr:nth-child(even) .deleteUser[disabled], tr:nth-child(even) .makeAdmin[disabled], tr:nth-child(even) .removeAdmin[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+
+tr:nth-child(even) .deleteUser{
+    background-color: red;
+    color: white;
+}
+
+tr:nth-child(even) .removeAdmin{
+    background-color: orangered;
+    color: white;
+}
+
+.page404{
+    margin: 30px auto;
+    width: 60%;
+}
+
+.page404 h1, .page404 p{
+    margin: 10px;
+    text-align: center;
+}
+.page404 img{
+    width: 50%;
+    margin-left: 25%;
+}
+
+
+
+
